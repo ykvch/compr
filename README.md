@@ -1,2 +1,2 @@
 # compr
-Advance object comparing
+Advanced object comparing
