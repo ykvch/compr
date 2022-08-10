@@ -9,9 +9,15 @@ This allows comfortable code for assertions, filters, dispatchers etc.
 
 Human readable `__repr__` is also available!
 
+## Installation
+```
+pip install compr
+```
+
+## Usage
 > NOTE: Examples below are purely synthetic to illustrate usage scenarios.
 
-## Example 0:
+### Example 0:
 ```
 # Assert actual value is greater than 5
 >>> import compr
@@ -20,7 +26,7 @@ Human readable `__repr__` is also available!
 >>> assert expected == actual, f'{actual=} does not match {expected=}'
 ```
 
-## Example 1: A function to validate HTTP response object attributes
+### Example 1: A function to validate HTTP response object attributes
 ```
 >>> dir(response)
 ['status', 'headers', 'body', 'body_len'] # int, dict, str, int respectively
