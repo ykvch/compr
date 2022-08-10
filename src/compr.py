@@ -1,60 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Handy wrappers for advanced object comparing/matching.
-
-Comparator objects bind value(s) AND compare logic into single item.
-Similarly to pytest.approx(...)
-
-NOTE: Example below is purely synthetic.
-EXAMPLE: A function to validate HTTP response object attributes
->>> dir(response)
-['status', 'headers', 'body', 'body_len'] # int, dict, str, int respectively
-
-Simple validator may look like (could be oneliner):
-
->>> def validate(response, **kwargs):
->>>     for k, v in kwargs.items():
->>>         if getattr(response, k) == v:
->>>             continue
->>>         else:
->>>             raise AssertionError(k, v)
-
-Usage (check if status is 200 and body is 'asdf'):
->>> validate(response, status=200, body='asdf')
-
-Now let's make requirements a little tricky.
-
-Check if body_len is between 300 and 400 bytes (incl) and status code is < 206.
-Pushing compare logic into validator will eventually overwhelm it with complex
-code, arguments or even magic.
-
-Instead we may leave trivial method above unchanged and use comparators:
->>> from comparators import lt, within  # less-than, fits-range
->>> validate(response, status=lt(206), body_len=within(300, 400))
-
-Now when validator tries to `==` status, it will check if its less-than 206.
-When running `==` with body_len, it will check if it fits into range [300..400].
-Profit!
-
-A few steps to make things even prettier:
-
->>> def validate(response, **kwargs):
->>>     for k, v in kwargs2cmp(kwargs):  # arg name parsing kicks in here
->>>     # allow kwargs to be interpreted as
->>>     # <argument-name>_<compare-logic>=<expected-value>
->>>         if getattr(response, k) == v:
->>>             continue
->>>         else:
->>>             raise AssertionError(k, v)
-
-And usage becomes even simpler:
->>> validate(response, status_lt=206, body_len_within=[300, 400])
-
-After more refactoring validate becomes (see all_attrs doc for help):
-
-def validate(response, **kwargs):
-        if not all_attrs(response, kwargs2cmp(kwargs)):
-            raise AssertionError(response, kwargs)
 """
 
 import re
