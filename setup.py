@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 NAME = "compr"
 CLASSIFIERS = [
@@ -12,4 +12,5 @@ setup(
     version=__version__,
     package_dir={"": "src"},
     classifiers=CLASSIFIERS,
+    long_description_content_type='text/markdown',
 )
