@@ -11,12 +11,13 @@ _COMPARATORS = {}  # dict of known comparator objects
 
 def comparator(method):
     """
-    Decorator that produces `comparator` objects
+    Decorator to create `comparator` objects
 
     Args:
         A function that returns True of False.
-        1st function argument is the value we want to measure.
-        Remaining arguments would be used as compare conditions.
+            The 1st function argument is a placeholder for actual value to
+            compare against later.
+            Remaining arguments are the expected compare conditions.
 
     Returns:
         `comparator` object where __eq__ is a wrapped function.
@@ -33,7 +34,7 @@ def comparator(method):
     return wrap
 
 
-# Sample handy comparators
+# Sample comparators
 
 @comparator
 def within(val, a, b):
@@ -76,12 +77,12 @@ def ne(val, condition):
 
 
 @comparator
-def eq_all(val, *condition):
+def all_eq(val, *condition):
     return all(val == i for i in condition)
 
 
 @comparator
-def eq_any(val, *condition):
+def any_eq(val, *condition):
     return any(val == i for i in condition)
 
 
@@ -96,6 +97,11 @@ def re_match(val, pattern):
 
 
 @comparator
+def startswith(val, condition):
+    return val.startswith(condition)
+
+
+@comparator
 def endswith(val, condition):
     return val.endswith(condition)
 
@@ -103,6 +109,16 @@ def endswith(val, condition):
 @comparator
 def eq(val, condition):  # pylint: disable=invalid-name
     return val == condition
+
+
+@comparator
+def shorter_than(val, condition):
+    return len(val) < condition
+
+
+@comparator
+def longer_than(val, condition):
+    return len(val) > condition
 
 
 @comparator

@@ -1,11 +1,11 @@
 # compr - handy comparing and matching
 
-Handy wrappers to compare/match objects with extra conditions.
+Collection of wrappers (comparators) to compare/match objects with extra conditions.
 
 Comparator objects bind value(s) AND compare logic into single item.
-Similarly to pytest.approx(...)
+Similarly to _pytest.approx(...)_
 
-This allows comfortable code for assertions, filters, dispatchers etc.
+This allows cleaner code for assertions, filters, dispatchers etc.
 
 Human readable `__repr__` is also available!
 
@@ -17,7 +17,7 @@ pip install compr
 ## Usage
 > NOTE: Examples below are purely synthetic to illustrate usage scenarios.
 
-### Example 0:
+### Example 0. Basic assert:
 ```
 # Assert actual value is greater than 5
 >>> import compr
@@ -26,7 +26,16 @@ pip install compr
 >>> assert expected == actual, f'{actual=} does not match {expected=}'
 ```
 
-### Example 1: A function to validate HTTP response object attributes
+### Example 1. Matching by condition:
+```
+# Find index of the first word starting with 't'
+>>> import compr
+>>> words = 'one', 'two', 'three', 'four'
+>>> words.index(compr.startswith('t'))
+1
+```
+
+### Example 2: Validate HTTP response object attributes
 ```
 >>> dir(response)
 ['status', 'headers', 'body', 'body_len'] # int, dict, str, int respectively
@@ -90,16 +99,16 @@ And usage becomes even simpler:
 After more refactoring validate becomes (see all_attrs doc for help):
 
 ```
-from complr import all_attrs
-
-def validate(response, **kwargs):
-        if not all_attrs(response, kwargs2cmp(kwargs)):
-            raise AssertionError(response, kwargs)
+>>> from compr import all_attrs
+>>>
+>>> def validate(response, **kwargs):
+>>>         if not all_attrs(response, kwargs2cmp(kwargs)):
+>>>             raise AssertionError(response, kwargs)
 ```
 
 ## Creating Your own comparator object:
 ```
 @compr.comparator
-def almost_equal(val, other):
-    return 0.9*val < other < 1.1*val
+def almost_equal(actual, expected):
+    return 0.9 * expected < actual < 1.1 * expected
 ```
