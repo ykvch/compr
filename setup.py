@@ -14,7 +14,7 @@ PROJECT_URLS = {
 setup(
     name=NAME,
     version=__version__,
-    description='Handy wrappers for advanced object comparing and matching.'
+    description='Handy wrappers for advanced object comparing and matching.',
     package_dir={"": "src"},
     project_urls=PROJECT_URLS,
     classifiers=CLASSIFIERS,
