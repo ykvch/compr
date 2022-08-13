@@ -43,13 +43,15 @@ Please see examples (also the one with `kwargs2compr` demonstrates in-depth usag
 
 > NOTE: These examples are intentionally synthetic for better illustration.
 
-### Example 0. Basic assert:
+### Example 0. Basic assert (note the error readability):
 ```
 # Assert actual value is greater than 5
 >>> import compr
 >>> expected = compr.gt(5)  # gt stands for greater than as in __gt__
 >>> actual = 3
 >>> assert expected == actual, f'{actual=} does not match {expected=}'
+...
+AssertionError: actual=3 does not match expected=gt(5)
 ```
 
 ### Example 1. Searhing list by condition:
