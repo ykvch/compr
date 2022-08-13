@@ -136,9 +136,10 @@ After more refactoring (see `all_attrs` docstring for help):
 ```
 
 
-## Creating Your own comparator object:
+## Creating Your own comparator function:
 ```
 @compr.comparator
-def almost_equal(actual, expected):
+def somewhat_equal(actual, expected):
+    """Compare with 10% precision"""
     return 0.9 * expected < actual < 1.1 * expected
 ```
