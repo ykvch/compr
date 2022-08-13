@@ -43,7 +43,7 @@ Please see examples (also the one with `kwargs2compr` demonstrates in-depth usag
 
 > NOTE: These examples are intentionally synthetic for better illustration.
 
-### Example 0. Basic assert (note the error readability):
+### Example 0. Basic assert (note the assert message):
 ```
 # Assert actual value is greater than 5
 >>> import compr
