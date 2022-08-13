@@ -37,13 +37,13 @@ def comparator(method):
 # Sample comparators
 
 @comparator
-def within(val, a, b):
-    return a <= val <= b
+def within(val, lower, upper):
+    return lower <= val <= upper
 
 
 @comparator
-def contains(val, param):
-    return param in val
+def contains(val, expected):
+    return expected in val
 
 
 @comparator
@@ -77,13 +77,13 @@ def ne(val, condition):
 
 
 @comparator
-def all_eq(val, *condition):
-    return all(val == i for i in condition)
+def all_eq(val, expected):
+    return all(v == expected for v in val)
 
 
 @comparator
-def any_eq(val, *condition):
-    return any(val == i for i in condition)
+def any_eq(val, expected):
+    return any(v == expected for v in val)
 
 
 @comparator
@@ -132,7 +132,7 @@ def contains_dict(dict_val, *args, **kwargs):
 
 # Convenience functions to assist parsing kwargs and compare agains objects
 
-def kwargs2cmp(kwargs):
+def kwargs2compr(kwargs):
     """Convert kwargs to comparator-s list
 
     Args:
