@@ -77,16 +77,6 @@ def ne(val, condition):
 
 
 @comparator
-def all_eq(val, expected):
-    return all(v == expected for v in val)
-
-
-@comparator
-def any_eq(val, expected):
-    return any(v == expected for v in val)
-
-
-@comparator
 def re_search(val, pattern):
     return re.search(pattern, val) is not None
 
@@ -128,6 +118,18 @@ def contains_dict(dict_val, *args, **kwargs):
         return all(v == dict_val[k] for k, v in expected_dict.items())
     except KeyError:
         return False
+
+
+# Special comparators to combine multiple checks
+
+@comparator
+def match_all(val, *condition):
+    return all(val == i for i in condition)
+
+
+@comparator
+def match_any(val, *condition):
+    return any(val == i for i in condition)
 
 
 # Convenience functions to assist parsing kwargs and compare agains objects

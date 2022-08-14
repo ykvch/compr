@@ -29,10 +29,10 @@ pip install compr
 We create comparators via functions in compr module:
 ```
 >>> import copmr
->>> all_fives = compr.all_eq(5)  # all_fives matches any iteable filled with fives
->>> [5, 5, 6,] == all_fives
+>>> contains_5 = compr.contains(5)  # matches iterable with 5 as one of elements
+>>> [3, 4, 6,] == contains_5
 False
->>> (5 for _ in range(10)) == all_fives
+>>> range(10) == contains_5
 True
 ```
 
@@ -136,7 +136,23 @@ After more refactoring (see `all_attrs` docstring for help):
 ```
 
 
-## Creating Your own comparator function:
+## Example 3: Combining multiple comparators
+2 special functions: `match_all` and `match_any` allow including other comparators to
+check against complex conditions
+
+```
+# Check if list shorter than 3 elements OR contains 1
+>>> from compr import match_any, shorter_than, contains
+>>> [2, 3] == match_any(shorter_than(3), contains(1))
+True
+>>> [1, 2, 3, 5] == match_any(shorter_than(3), contains(1))
+True
+>>> [2, 3, 5, 6, 7] == match_any(shorter_than(3), contains(1))
+False
+```
+
+
+## Creating Your own comparator object:
 ```
 @compr.comparator
 def somewhat_equal(actual, expected):
