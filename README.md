@@ -54,7 +54,7 @@ Please see examples (also the one with `kwargs2compr` demonstrates in-depth usag
 AssertionError: actual=3 does not match expected=gt(5)
 ```
 
-### Example 1. Searhing list by condition:
+### Example 1. Searching list by condition:
 ```
 # Find index of the first word starting with 't'
 >>> from compr import startswith
@@ -156,6 +156,6 @@ False
 ```
 @compr.comparator
 def somewhat_equal(actual, expected):
-    """Compare with 10% precision"""
+    """Compare with 10% tolerance"""
     return 0.9 * expected < actual < 1.1 * expected
 ```
