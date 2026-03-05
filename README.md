@@ -1,5 +1,8 @@
 # compr - flexible comparing and matching
 
+[![PyPI version](https://img.shields.io/pypi/v/compr.svg)](https://pypi.org/project/compr/)
+[![Python versions](https://img.shields.io/pypi/pyversions/compr.svg)](https://pypi.org/project/compr/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ykvch/compr/blob/master/LICENSE)
 
 ## Rationale
 _compr_ is a collection of wrappers (comparators) that enable flexible and complex comparing scenarios via simple code.
@@ -28,13 +31,14 @@ pip install compr
 ## Usage
 We create comparators via functions in compr module:
 ```
->>> import copmr
+>>> import compr
 >>> contains_5 = compr.contains(5)  # matches iterable with 5 as one of elements
 >>> [3, 4, 6,] == contains_5
 False
 >>> range(10) == contains_5
 True
 ```
+
 
 The real profit comes by using comparators as arguments.
 So underlying handlers can stay simple (check only `==`). While flexibility is achieved by providing different comparators when needed.
